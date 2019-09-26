@@ -1,7 +1,5 @@
 FROM mcr.microsoft.com/windows/servercore:1809
 
-COPY estafette-extension-prefetch.exe c:/estafette-extension-prefetch.exe
+COPY estafette-extension-envvars.exe c:/estafette-extension-envvars.exe
 
-ENV PATH="C:\dod;$PATH"
-
-ENTRYPOINT ["C:/estafette-extension-prefetch.exe"]
+ENTRYPOINT ["C:/estafette-extension-envvars.exe"]
