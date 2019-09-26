@@ -1,0 +1,7 @@
+FROM mcr.microsoft.com/windows/servercore:1809
+
+COPY estafette-extension-prefetch.exe c:/estafette-extension-prefetch.exe
+
+ENV PATH="C:\dod;$PATH"
+
+ENTRYPOINT ["C:/estafette-extension-prefetch.exe"]
