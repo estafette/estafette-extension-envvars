@@ -1,13 +1,13 @@
 package main
 
 import (
-	"log"
 	"os"
 	"runtime"
 	"sort"
 	"strings"
 
 	foundation "github.com/estafette/estafette-foundation"
+	"github.com/rs/zerolog/log"
 )
 
 var (
@@ -25,7 +25,7 @@ func main() {
 	// init log format from envvar ESTAFETTE_LOG_FORMAT
 	foundation.InitLoggingFromEnv(appgroup, app, version, branch, revision, buildDate)
 
-	log.Printf("All available estafette environment variables; the _DNS_SAFE suffixed ones can be used to set dns labels. Since leading digits are not allowed some of them are empty.\n\n")
+	log.Info().Msg("All available estafette environment variables; the _DNS_SAFE suffixed ones can be used to set dns labels. Since leading digits are not allowed some of them are empty.")
 
 	estafetteEnvvars := []string{}
 
@@ -53,7 +53,7 @@ func main() {
 			envvarName := kvPair[0]
 			envvarValue := kvPair[1]
 
-			log.Printf("%v: %v\n", envvarName, envvarValue)
+			log.Info().Msgf("%v: %v", envvarName, envvarValue)
 		}
 	}
 }
