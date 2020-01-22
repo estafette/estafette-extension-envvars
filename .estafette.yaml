@@ -13,7 +13,7 @@ version:
 
 stages:
   build:
-    image: golang:1.13.0-alpine3.10
+    image: golang:1.13.6-alpine3.11
     env:
       CGO_ENABLED: 0
       GOOS: linux
@@ -39,6 +39,22 @@ stages:
     repositories:
     - extensions
     path: ./publish
+
+  check-container:
+    parallelStages:
+      check-efficiency:
+        image: extensions/docker:dev
+        action: dive
+        container: envvars
+        repositories:
+        - extensions
+
+      vulnerability-scan:
+        image: extensions/docker:dev
+        action: trivy
+        container: envvars
+        repositories:
+        - extensions
 
   test:
     image: extensions/envvars:${ESTAFETTE_BUILD_VERSION}
