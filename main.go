@@ -56,4 +56,36 @@ func main() {
 			log.Info().Msgf("%v: %v", envvarName, envvarValue)
 		}
 	}
+
+	log.Info().Msg("All global envvars as defined in the manifest.")
+
+	globalEnvvars := []string{}
+
+	// get all envvars NOT starting with ESTAFETTE_
+	for _, e := range os.Environ() {
+		kvPair := strings.SplitN(e, "=", 2)
+
+		if len(kvPair) == 2 {
+			envvarName := kvPair[0]
+
+			if !strings.HasPrefix(envvarName, "ESTAFETTE_") {
+				globalEnvvars = append(globalEnvvars, e)
+			}
+		}
+	}
+
+	// sort envvars, since they're returned randomly
+	sort.Strings(globalEnvvars)
+
+	// log all global envvars
+	for _, e := range globalEnvvars {
+		kvPair := strings.SplitN(e, "=", 2)
+
+		if len(kvPair) == 2 {
+			envvarName := kvPair[0]
+			envvarValue := kvPair[1]
+
+			log.Info().Msgf("%v: %v", envvarName, envvarValue)
+		}
+	}
 }
