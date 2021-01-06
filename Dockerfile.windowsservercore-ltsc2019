@@ -41,10 +41,6 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 COPY --from=builder C:/Work/publish/estafette-extension-envvars.exe C:/estafette-extension-envvars.exe
-COPY --from=builder C:/git C:/git
-
-RUN	$env:PATH = 'C:\git\cmd;C:\git\mingw64\bin;C:\git\usr\bin;' + $env:PATH; \
-	[Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine);
 
 ENV ESTAFETTE_LOG_FORMAT="console"
 
