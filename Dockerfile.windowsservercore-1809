@@ -1,5 +1,0 @@
-FROM mcr.microsoft.com/windows/servercore:1809
-
-COPY estafette-extension-envvars.exe c:/estafette-extension-envvars.exe
-
-ENTRYPOINT ["C:/estafette-extension-envvars.exe"]
