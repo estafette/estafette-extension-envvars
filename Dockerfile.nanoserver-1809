@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/windows/nanoserver:1809
+
+COPY estafette-extension-envvars.exe C:/estafette-extension-envvars.exe
+
+ENV ESTAFETTE_LOG_FORMAT="console"
+
+USER ContainerAdministrator
+
+ENTRYPOINT ["C:/estafette-extension-envvars.exe"]

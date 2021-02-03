@@ -82,7 +82,7 @@ releases:
     clone: true
     stages:
       build:
-        image: estafette/golang:1.15.6-windowsservercore-ltsc2019
+        image: golang:1.15.7-nanoserver-1809
         env:
           CGO_ENABLED: 0
           GOOS: windows
@@ -98,7 +98,7 @@ releases:
         container: envvars
         repositories:
         - extensions
-        dockerfile: Dockerfile.windowsservercore-ltsc2019
+        dockerfile: Dockerfile.nanoserver-1809
         path: ./publish
 
       test:
@@ -111,7 +111,7 @@ releases:
         repositories:
         - extensions
         tags:
-        - windowsservercore-ltsc2019
+        - nanoserver-1809
         pushVersionTag: false
 
   dev:
